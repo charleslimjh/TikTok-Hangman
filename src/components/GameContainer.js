@@ -15,13 +15,13 @@ function GameContainer() {
   function guess(char) {
     const positions = [];
     for (let i = 0; i < word.length; i++) {
-      if (char == word.charAt(i)) {
+      if (char === word.charAt(i)) {
         positions.push(i);
       }
     }
 
     const newStatus = wordStatus.slice();
-    for (i in positions) {
+    for (const i of positions) {
       newStatus[i] = char + " ";
     }
     
