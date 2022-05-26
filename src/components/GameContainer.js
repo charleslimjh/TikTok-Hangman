@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import masterList from "./masterList";
 import LivesCounter from "./LivesCounter";
 import GameModal from "./GameModal";
-import Keyboard from "./Keyboard";
+import Keyboard from "./keyboard";
 import Navbar from "react-bootstrap/Navbar";
 import Stack from "react-bootstrap/Stack";
 import TikTokIcon from '../tiktok-icon.svg';
