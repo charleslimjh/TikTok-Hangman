@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import masterList from "./masterList";
 import LivesCounter from "./LivesCounter";
-import MasterList from "./MasterList";
 import Keyboard from "./Keyboard";
 import GameModal from "./GameModal";
 import Navbar from "react-bootstrap/Navbar";
@@ -16,8 +16,9 @@ function GameContainer() {
   const [lettersGuessed, setLettersGuessed] = useState(0);
   const [gameOver, setGameOver] = useState(false);
 
+  
   function generateWordAndHint() {
-    return MasterList[Math.floor(Math.random() * MasterList.length + 1)];
+    return masterList[Math.floor(Math.random() * masterList.length + 1)];
   }
 
   // guess function

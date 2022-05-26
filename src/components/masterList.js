@@ -1,5 +1,5 @@
 // Master list containing hangman words and corresponding hints
-var MasterList = [
+const masterList = [
 	["TIKTOK", "What is the name of the international video platform owned by ByteDance?"],
 	["DOUYIN", "What is the name of the short video platform launched by ByteDance in 2016?"],
 	["LARK", "What is the enterprise workspace used by ByteDance and TikTok employees to collaborate and communicate?"],
@@ -47,4 +47,4 @@ var MasterList = [
 	["SEA GAMES", "What sports event did TikTok support in May 2022?"]
 ];
 
-export default MasterList;
+export default masterList;
