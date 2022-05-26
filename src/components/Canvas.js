@@ -14,40 +14,44 @@ const lineVariants = {
 
 function Canvas(props) {
   return (
-    <svg height="250" width="200" className="figure-container">
-      {/* <!-- Rod --> */}
+    <svg height="200" width="250" className="figure-container">
+      {/* <!-- Bottom Rod --> */}
       <motion.line
-        x1="60"
-        y1="20"
-        x2="140"
-        y2="20"
+        x1="0"
+        y1="150"
+        x2="50"
+        y2="150"
+        variants={lineVariants}
+        initial="hidden"
+        animate="visible"
+      />
+
+      {/* <!-- Vertical Rod --> */}
+      <motion.line
+        x1="25"
+        y1="150"
+        x2="25"
+        y2="5"
+        variants={lineVariants}
+        initial="hidden"
+        animate="visible"
+      />
+
+      {/* <!-- Top Rod --> */}
+      <motion.line
+        x1="25"
+        y1="5"
+        x2="75"
+        y2="5"
         variants={lineVariants}
         initial="hidden"
         animate="visible"
       />
       <motion.line
-        x1="140"
-        y1="20"
-        x2="140"
-        y2="50"
-        variants={lineVariants}
-        initial="hidden"
-        animate="visible"
-      />
-      <motion.line
-        x1="60"
-        y1="20"
-        x2="60"
-        y2="230"
-        variants={lineVariants}
-        initial="hidden"
-        animate="visible"
-      />
-      <motion.line
-        x1="20"
-        y1="230"
-        x2="100"
-        y2="230"
+        x1="75"
+        y1="5"
+        x2="75"
+        y2="15"
         variants={lineVariants}
         initial="hidden"
         animate="visible"
@@ -56,9 +60,9 @@ function Canvas(props) {
       {/* <!-- Head --> */}
       {props.livesLeft < 6 && (
         <motion.circle
-          cx="140"
-          cy="70"
-          r="20"
+          cx="75"
+          cy="25"
+          r="10"
           variants={lineVariants}
           initial="hidden"
           animate="visible"
@@ -67,10 +71,10 @@ function Canvas(props) {
       {/* <!-- Body --> */}
       {props.livesLeft < 5 && (
         <motion.line
-          x1="140"
-          y1="90"
-          x2="140"
-          y2="150"
+          x1="75"
+          y1="35"
+          x2="75"
+          y2="90"
           variants={lineVariants}
           initial="hidden"
           animate="visible"
@@ -79,10 +83,10 @@ function Canvas(props) {
       {/* <!-- Arms --> */}
       {props.livesLeft < 4 && (
         <motion.line
-          x1="140"
-          y1="120"
-          x2="120"
-          y2="100"
+          x1="75"
+          y1="50"
+          x2="55"
+          y2="80"
           variants={lineVariants}
           initial="hidden"
           animate="visible"
@@ -90,10 +94,10 @@ function Canvas(props) {
       )}
       {props.livesLeft < 3 && (
         <motion.line
-          x1="140"
-          y1="120"
-          x2="160"
-          y2="100"
+          x1="75"
+          y1="50"
+          x2="95"
+          y2="80"
           variants={lineVariants}
           initial="hidden"
           animate="visible"
@@ -102,10 +106,10 @@ function Canvas(props) {
       {/* <!-- Legs --> */}
       {props.livesLeft < 2 && (
         <motion.line
-          x1="140"
-          y1="150"
-          x2="120"
-          y2="180"
+          x1="75"
+          y1="90"
+          x2="55"
+          y2="125"
           variants={lineVariants}
           initial="hidden"
           animate="visible"
@@ -113,10 +117,10 @@ function Canvas(props) {
       )}
       {props.livesLeft < 1 && (
         <motion.line
-          x1="140"
-          y1="150"
-          x2="160"
-          y2="180"
+          x1="75"
+          y1="90"
+          x2="95"
+          y2="125"
           variants={lineVariants}
           initial="hidden"
           animate="visible"

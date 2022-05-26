@@ -5,6 +5,7 @@ import Keyboard from "./Keyboard";
 import GameModal from "./GameModal";
 import Navbar from "react-bootstrap/Navbar";
 import Stack from "react-bootstrap/Stack";
+import TikTokIcon from '../tiktok-icon.svg';
 
 function GameContainer() {
   const [word, setWord] = useState("");
@@ -102,7 +103,11 @@ function GameContainer() {
   return (
     <div>
       <Navbar bg="light" className="mb-3">
-        <Navbar.Brand>Tiktok Hangman!</Navbar.Brand>
+        <Navbar.Brand className="mx-2">
+          <img alt="" src={TikTokIcon} width="50px" height="50px" className="img-responsive"></img>
+          {' '}
+          Tiktok Hangman!
+          </Navbar.Brand>
       </Navbar>
 
       <Stack gap={2} className="mx-3">

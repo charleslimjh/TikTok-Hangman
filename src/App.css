@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-body, #root {
+#root {
   background-color: black;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
