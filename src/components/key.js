@@ -1,4 +1,4 @@
-import Button from "react-bootstrap/button";
+import Button from "react-bootstrap/Button";
 import { useState } from "react";
 
 function Key(props) {
