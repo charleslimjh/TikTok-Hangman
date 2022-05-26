@@ -40,7 +40,6 @@ function GameContainer() {
       newStatus += " ";
     }
     newStatus = Array.from(newStatus.trim());
-    console.log(newStatus);
 
     for (let i of positions) {
       newStatus[i] = char;
@@ -93,10 +92,6 @@ function GameContainer() {
     setWordLength(len);
   }, []);
 
-  console.log(word, hint);
-  console.log(wordStatus);
-  console.log(wordLength, livesLeft, lettersGuessed, gameOver);
-
   return (
     <div>
       <div className="word">
@@ -110,7 +105,7 @@ function GameContainer() {
         <Keyboard onClick={guess} gameWon={gameOver} />
       </div>
       {(gameOver && wordLength === lettersGuessed) && <Modal message={"You won!"}/>}
-      {(gameOver && wordLength !== lettersGuessed) && <Modal message={"You lost!"}/>}
+      {(gameOver && wordLength !== lettersGuessed) && <Modal message={"You lost! The answer was: " + word}/>}
     </div>
   );
 }
