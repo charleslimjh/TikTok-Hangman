@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import LivesCounter from "./LivesCounter";
-import MasterList from "./Masterlist";
+import MasterList from "./MasterList";
 import Keyboard from "./Keyboard";
 import GameModal from "./GameModal";
 import Navbar from "react-bootstrap/Navbar";
