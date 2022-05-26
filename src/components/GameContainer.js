@@ -43,12 +43,12 @@ function GameContainer() {
       newStatus += " ";
     }
     newStatus = Array.from(newStatus.trim());
-    console.log(newStatus);
+    
 
     for (let i of positions) {
       newStatus[i] = char;
     }
-    console.log(newStatus);
+    
 
     let blanks = "";
     for (let i = 0; i < word.length; i++) {
@@ -59,19 +59,17 @@ function GameContainer() {
       }
     }
     setWordStatus(blanks.trim());
-    console.log(blanks.trim());
+    
 
     // update LivesLeft
     if (tmp === 0) {
       setLivesLeft(livesLeft - 1);
       if (livesLeft === 1) {
-        console.log("GAME LOST");
         setGameOver(true);
       }
     }
 
     if (lettersGuessed + tmp === wordLength) {
-      console.log("GAME WON!");
       setGameOver(true);
     }
   }
@@ -98,8 +96,6 @@ function GameContainer() {
     setWordStatus(blanks.trim());
     setWordLength(len);
   }, []);
-
-  console.log();
 
   return (
     <div>
