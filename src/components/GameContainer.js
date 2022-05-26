@@ -83,6 +83,8 @@ function GameContainer() {
     setWord(word);
     setHint(wordHintPair[1]);
 
+    console.log("breakpoint 1");
+
     let blanks = "";
     for (let i = 0; i < word.length; i++) {
       if (word[i] === " ") {
@@ -94,6 +96,7 @@ function GameContainer() {
     }
     setWordStatus(blanks.trim());
     setWordLength(len);
+    console.log("breakpoint 2");
   }, []);
 
   return (

@@ -6,7 +6,7 @@ function LivesCounter(props) {
   return (
     <div>
       <div>You have {props.livesLeft} lives left.</div>
-      <Canvas />
+      <Canvas livesLeft={props.livesLeft} />
     </div>
   );
 }
