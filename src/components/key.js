@@ -10,7 +10,6 @@ function Key(props) {
         props.onClick(props.keyVal);
         setClicked(true);
       }}
-      className="m-1"
     >
       <div className="key"> {props.keyVal}</div>
     </Button>
