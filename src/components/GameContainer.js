@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import LivesCounter from "./LivesCounter";
-import masterList from "./masterList";
-import Keyboard from "./keyboard";
-import Navbar from "react-bootstrap/Navbar";
+import MasterList from "./Masterlist";
+import Keyboard from "./Keyboard";
 import GameModal from "./GameModal";
+import Navbar from "react-bootstrap/Navbar";
 import Stack from "react-bootstrap/Stack";
 
 function GameContainer() {
@@ -16,7 +16,7 @@ function GameContainer() {
   const [gameOver, setGameOver] = useState(false);
 
   function generateWordAndHint() {
-    return masterList[Math.floor(Math.random() * masterList.length + 1)];
+    return MasterList[Math.floor(Math.random() * MasterList.length + 1)];
   }
 
   // guess function
