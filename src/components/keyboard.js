@@ -1,6 +1,4 @@
 import Key from "./key";
-import Row from "react-bootstrap/Row";
-import Col from 'react-bootstrap/Col'
 import Container from "react-bootstrap/Container";
 
 function Keyboard(props) {
@@ -10,42 +8,42 @@ function Keyboard(props) {
 
   return (
     <Container fluid="true">
-      <Row>
+      <div className="row1">
         {keys1.map((key) => {
           return (
-            <Col xs={1}><Key
+            <Key
               key={key}
               keyVal={key}
               onClick={props.onClick}
               gameWon={props.gameWon}
-            /></Col>
+            />
           );
         })}
-      </Row>
-      <Row>
+      </div>
+      <div className="row2">
         {keys2.map((key) => {
           return (
-            <Col xs={1}><Key
+            <Key
               key={key}
               keyVal={key}
               onClick={props.onClick}
               gameWon={props.gameWon}
-            /></Col>
+            />
           );
         })}
-      </Row>
-      <Row>
+      </div>
+      <div className="row3">
         {keys3.map((key) => {
           return (
-            <Col xs={1}><Key
+            <Key
               key={key}
               keyVal={key}
               onClick={props.onClick}
               gameWon={props.gameWon}
-            /></Col>
+            />
           );
         })}
-      </Row>
+      </div>
     </Container>
   );
 }

@@ -10,7 +10,7 @@ function Key(props) {
         props.onClick(props.keyVal);
         setClicked(true);
       }}
-      className="border m-auto p-auto"
+      className="border m-0"
     >
       <div className="key"> {props.keyVal}</div>
     </Button>
