@@ -1,4 +1,7 @@
 import Key from "./key";
+import Row from "react-bootstrap/Row";
+import Col from 'react-bootstrap/Col'
+import Container from "react-bootstrap/Container";
 
 function Keyboard(props) {
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
@@ -6,44 +9,44 @@ function Keyboard(props) {
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
   return (
-    <div className="keyboard">
-      <div className="row1">
+    <Container fluid="true">
+      <Row>
         {keys1.map((key) => {
           return (
-            <Key
+            <Col xs={1}><Key
               key={key}
               keyVal={key}
               onClick={props.onClick}
               gameWon={props.gameWon}
-            />
+            /></Col>
           );
         })}
-      </div>
-      <div className="row2">
+      </Row>
+      <Row>
         {keys2.map((key) => {
           return (
-            <Key
+            <Col xs={1}><Key
               key={key}
               keyVal={key}
               onClick={props.onClick}
               gameWon={props.gameWon}
-            />
+            /></Col>
           );
         })}
-      </div>
-      <div className="row3">
+      </Row>
+      <Row>
         {keys3.map((key) => {
           return (
-            <Key
+            <Col xs={1}><Key
               key={key}
               keyVal={key}
               onClick={props.onClick}
               gameWon={props.gameWon}
-            />
+            /></Col>
           );
         })}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 }
 
