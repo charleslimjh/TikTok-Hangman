@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import LivesCounter from "./LivesCounter";
 import masterList from "./masterList";
 import Keyboard from "./keyboard";
-import Modal from "./Modal";
-import Navbar from 'react-bootstrap/Navbar';
+import Navbar from "react-bootstrap/Navbar";
+import GameModal from "./GameModal";
+import Container from "react-bootstrap/Container";
+import Stack from "react-bootstrap/Stack";
 
 function GameContainer() {
   const [word, setWord] = useState("");
@@ -41,19 +43,23 @@ function GameContainer() {
       newStatus += " ";
     }
     newStatus = Array.from(newStatus.trim());
+    console.log(newStatus);
 
     for (let i of positions) {
       newStatus[i] = char;
     }
+    console.log(newStatus);
+
     let blanks = "";
     for (let i = 0; i < word.length; i++) {
-      if (newStatus[i] === " ") {
-        blanks += "    ";
+      if (newStatus[i] === "\n") {
+        blanks += "\n";
       } else {
         blanks += newStatus[i] + " ";
       }
     }
     setWordStatus(blanks.trim());
+    console.log(blanks.trim());
 
     // update LivesLeft
     if (tmp === 0) {
@@ -83,7 +89,7 @@ function GameContainer() {
     let blanks = "";
     for (let i = 0; i < word.length; i++) {
       if (word[i] === " ") {
-        blanks += "    ";
+        blanks += "\n";
       } else {
         blanks += "_ ";
         len += 1;
@@ -93,24 +99,42 @@ function GameContainer() {
     setWordLength(len);
   }, []);
 
+  console.log();
+
   return (
     <div>
-      <Navbar bg="light">
-          <Navbar.Brand>Tiktok Hangman!</Navbar.Brand>
+      <Navbar bg="light" className="mb-3">
+        <Navbar.Brand>Tiktok Hangman!</Navbar.Brand>
       </Navbar>
 
-      <div className="word">
-        <pre>Word: {wordStatus}</pre>
-      </div>
-      <div>Hint: {hint}</div>
-      <div>
-        <LivesCounter livesLeft={livesLeft} />
-      </div>
-      <div>
-        <Keyboard onClick={guess} gameWon={gameOver} />
-      </div>
-      {(gameOver && wordLength === lettersGuessed) && <Modal message={"You won!"}/>}
-      {(gameOver && wordLength !== lettersGuessed) && <Modal message={"You lost! The answer was: " + word}/>}
+      <Stack gap={2} className="mx-3">
+        <div>
+          Word:
+          <pre>{wordStatus}</pre>
+        </div>
+
+        <div>Hint: {hint}</div>
+
+        <div>
+          <LivesCounter livesLeft={livesLeft} />
+        </div>
+
+        <div>
+          <Keyboard onClick={guess} gameWon={gameOver} />
+        </div>
+
+        <div>
+          {gameOver && wordLength === lettersGuessed && (
+            <GameModal win={"You Win!"} loseMessage={""} />
+          )}
+          {gameOver && wordLength !== lettersGuessed && (
+            <GameModal
+              win={"You Lose!"}
+              loseMessage={"The answer was: " + word + ". "}
+            />
+          )}
+        </div>
+      </Stack>
     </div>
   );
 }
