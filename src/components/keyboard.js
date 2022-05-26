@@ -9,17 +9,38 @@ function Keyboard(props) {
     <div className="keyboard">
       <div className="row1">
         {keys1.map((key) => {
-          return <Key key={key} keyVal={key} onClick={props.onClick} gameWon={props.gameWon}/>;
+          return (
+            <Key
+              key={key}
+              keyVal={key}
+              onClick={props.onClick}
+              gameWon={props.gameWon}
+            />
+          );
         })}
       </div>
       <div className="row2">
         {keys2.map((key) => {
-          return <Key key={key}  keyVal={key} onClick={props.onClick} />;
+          return (
+            <Key
+              key={key}
+              keyVal={key}
+              onClick={props.onClick}
+              gameWon={props.gameWon}
+            />
+          );
         })}
       </div>
       <div className="row3">
         {keys3.map((key) => {
-          return <Key key={key}  keyVal={key} onClick={props.onClick} />;
+          return (
+            <Key
+              key={key}
+              keyVal={key}
+              onClick={props.onClick}
+              gameWon={props.gameWon}
+            />
+          );
         })}
       </div>
     </div>

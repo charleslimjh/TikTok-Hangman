@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import LivesCounter from "./LivesCounter";
 import masterList from "./masterList";
 import Keyboard from "./keyboard";
-import GameWonModal from "./GameWonModal";
+import Modal from "./Modal";
 
 function GameContainer() {
   const [word, setWord] = useState("");
@@ -11,6 +11,7 @@ function GameContainer() {
   const [wordStatus, setWordStatus] = useState("");
   const [livesLeft, setLivesLeft] = useState(6);
   const [lettersGuessed, setLettersGuessed] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
 
   function generateWordAndHint() {
     return masterList[Math.floor(Math.random() * masterList.length + 1)];
@@ -28,12 +29,12 @@ function GameContainer() {
         tmp += 1;
       }
     }
-    setLettersGuessed(lettersGuessed + tmp)
+    setLettersGuessed(lettersGuessed + tmp);
 
     // update wordStatus (blanks)
-    let newStatus=" ";
+    let newStatus = " ";
     for (let i of wordStatus.split("    ")) {
-      for (let c=0; c < i.length; c++) {
+      for (let c = 0; c < i.length; c++) {
         if (i[c] !== " ") newStatus += i[c];
       }
       newStatus += " ";
@@ -49,7 +50,7 @@ function GameContainer() {
       if (newStatus[i] === " ") {
         blanks += "    ";
       } else {
-        blanks += (newStatus[i] + " ");
+        blanks += newStatus[i] + " ";
       }
     }
     setWordStatus(blanks.trim());
@@ -57,13 +58,15 @@ function GameContainer() {
     // update LivesLeft
     if (tmp === 0) {
       setLivesLeft(livesLeft - 1);
-      if (livesLeft === 0) {
+      if (livesLeft === 1) {
         console.log("GAME LOST");
+        setGameOver(true);
       }
     }
 
-    if (lettersGuessed === wordLength) {
+    if (lettersGuessed + tmp === wordLength) {
       console.log("GAME WON!");
+      setGameOver(true);
     }
   }
 
@@ -73,6 +76,7 @@ function GameContainer() {
     const word = wordHintPair[0];
     let len = 0;
 
+    setLettersGuessed(0);
     setWord(word);
     setHint(wordHintPair[1]);
 
@@ -89,11 +93,11 @@ function GameContainer() {
     setWordLength(len);
   }, []);
 
-  console.log(word, hint, livesLeft, lettersGuessed, wordLength === lettersGuessed);
+  console.log(word, hint);
   console.log(wordStatus);
+  console.log(wordLength, livesLeft, lettersGuessed, gameOver);
 
   return (
-    
     <div>
       <div className="word">
         <pre>Word: {wordStatus}</pre>
@@ -103,9 +107,10 @@ function GameContainer() {
         <LivesCounter livesLeft={livesLeft} />
       </div>
       <div>
-        <Keyboard onClick={guess} gameWon={lettersGuessed === wordLength} />
+        <Keyboard onClick={guess} gameWon={gameOver} />
       </div>
-      {(lettersGuessed === wordLength) && <GameWonModal />}
+      {(gameOver && wordLength === lettersGuessed) && <Modal message={"You won!"}/>}
+      {(gameOver && wordLength !== lettersGuessed) && <Modal message={"You lost!"}/>}
     </div>
   );
 }
