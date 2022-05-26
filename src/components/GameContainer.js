@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
 import LivesCounter from "./LivesCounter";
 import masterList from "./masterList";
+import Keyboard from "./keyboard";
+import GameWonModal from "./GameWonModal";
 
 function GameContainer() {
   const [word, setWord] = useState("");
+  const [wordLength, setWordLength] = useState(0);
   const [hint, setHint] = useState("");
   const [wordStatus, setWordStatus] = useState("");
   const [livesLeft, setLivesLeft] = useState(6);
+  const [lettersGuessed, setLettersGuessed] = useState(0);
 
   function generateWordAndHint() {
     return masterList[Math.floor(Math.random() * masterList.length + 1)];
@@ -16,17 +20,27 @@ function GameContainer() {
   function guess(char) {
     // generate index of characters that match input char
     let positions = [];
-    let correctGuess = false;
+    let tmp = 0;
 
     for (let i = 0; i < word.length; i++) {
       if (char === word.charAt(i)) {
         positions.push(i);
-        correctGuess = true;
+        tmp += 1;
       }
     }
+    setLettersGuessed(lettersGuessed + tmp)
 
     // update wordStatus (blanks)
-    let newStatus = wordStatus.split(" ");
+    let newStatus=" ";
+    for (let i of wordStatus.split("    ")) {
+      for (let c=0; c < i.length; c++) {
+        if (i[c] !== " ") newStatus += i[c];
+      }
+      newStatus += " ";
+    }
+    newStatus = Array.from(newStatus.trim());
+    console.log(newStatus);
+
     for (let i of positions) {
       newStatus[i] = char;
     }
@@ -38,11 +52,18 @@ function GameContainer() {
         blanks += (newStatus[i] + " ");
       }
     }
-    setWordStatus(blanks);
+    setWordStatus(blanks.trim());
 
     // update LivesLeft
-    if (!correctGuess) {
+    if (tmp === 0) {
       setLivesLeft(livesLeft - 1);
+      if (livesLeft === 0) {
+        console.log("GAME LOST");
+      }
+    }
+
+    if (lettersGuessed === wordLength) {
+      console.log("GAME WON!");
     }
   }
 
@@ -50,6 +71,8 @@ function GameContainer() {
   useEffect(() => {
     const wordHintPair = generateWordAndHint();
     const word = wordHintPair[0];
+    let len = 0;
+
     setWord(word);
     setHint(wordHintPair[1]);
 
@@ -59,15 +82,18 @@ function GameContainer() {
         blanks += "    ";
       } else {
         blanks += "_ ";
+        len += 1;
       }
     }
-    setWordStatus(blanks);
+    setWordStatus(blanks.trim());
+    setWordLength(len);
   }, []);
 
-  console.log(word, hint, livesLeft);
+  console.log(word, hint, livesLeft, lettersGuessed, wordLength === lettersGuessed);
   console.log(wordStatus);
 
   return (
+    
     <div>
       <div className="word">
         <pre>Word: {wordStatus}</pre>
@@ -77,8 +103,9 @@ function GameContainer() {
         <LivesCounter livesLeft={livesLeft} />
       </div>
       <div>
-        <button onClick={() => guess("A")}>Click me!</button>
+        <Keyboard onClick={guess} gameWon={lettersGuessed === wordLength} />
       </div>
+      {(lettersGuessed === wordLength) && <GameWonModal />}
     </div>
   );
 }

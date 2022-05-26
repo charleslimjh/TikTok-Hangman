@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 function LivesCounter(props) {
-  const [image, setImage] = useState(displayHangman(props.livesLeft));
-
   //TODO LIFE COUNTER ANIMATION
 
   return (
