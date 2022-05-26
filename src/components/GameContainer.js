@@ -4,7 +4,6 @@ import masterList from "./masterList";
 import Keyboard from "./keyboard";
 import Navbar from "react-bootstrap/Navbar";
 import GameModal from "./GameModal";
-import Container from "react-bootstrap/Container";
 import Stack from "react-bootstrap/Stack";
 
 function GameContainer() {
