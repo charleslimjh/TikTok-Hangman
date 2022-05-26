@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import masterList from "./masterList";
 import LivesCounter from "./LivesCounter";
-import Keyboard from "./Keyboard";
 import GameModal from "./GameModal";
+import Keyboard from "./Keyboard";
 import Navbar from "react-bootstrap/Navbar";
 import Stack from "react-bootstrap/Stack";
 import TikTokIcon from '../tiktok-icon.svg';
@@ -85,8 +85,6 @@ function GameContainer() {
     setWord(word);
     setHint(wordHintPair[1]);
 
-    console.log("breakpoint 1");
-
     let blanks = "";
     for (let i = 0; i < word.length; i++) {
       if (word[i] === " ") {
@@ -98,7 +96,6 @@ function GameContainer() {
     }
     setWordStatus(blanks.trim());
     setWordLength(len);
-    console.log("breakpoint 2");
   }, []);
 
   return (
