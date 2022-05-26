@@ -3,6 +3,7 @@ import LivesCounter from "./LivesCounter";
 import masterList from "./masterList";
 import Keyboard from "./keyboard";
 import Modal from "./Modal";
+import Navbar from 'react-bootstrap/Navbar';
 
 function GameContainer() {
   const [word, setWord] = useState("");
@@ -94,6 +95,10 @@ function GameContainer() {
 
   return (
     <div>
+      <Navbar bg="light">
+          <Navbar.Brand>Tiktok Hangman!</Navbar.Brand>
+      </Navbar>
+
       <div className="word">
         <pre>Word: {wordStatus}</pre>
       </div>
